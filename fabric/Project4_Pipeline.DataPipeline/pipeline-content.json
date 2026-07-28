@@ -29,6 +29,7 @@
           ],
           "storeSettings": {
             "type": "AzureBlobFSReadSettings",
+            "recursive": true,
             "enablePartitionDiscovery": false
           },
           "formatSettings": {
@@ -70,6 +71,7 @@
       {
         "type": "ForEach",
         "typeProperties": {
+          "isSequential": true,
           "items": {
             "value": "@activity('FilterCSV').output.value",
             "type": "Expression"
@@ -94,7 +96,11 @@
                       "location": {
                         "type": "AzureBlobFSLocation",
                         "fileSystem": "source-data",
-                        "folderPath": "files"
+                        "folderPath": "files",
+                        "fileName": {
+                          "value": "@item().name",
+                          "type": "Expression"
+                        }
                       },
                       "columnDelimiter": ",",
                       "quoteChar": "\"",
@@ -115,7 +121,7 @@
                     "fileExtension": ".txt"
                   },
                   "storeSettings": {
-                    "type": "LakehouseWriteSettings"
+                    "type": "AzureBlobStorageWriteSettings"
                   },
                   "datasetSettings": {
                     "type": "DelimitedText",
@@ -167,7 +173,7 @@
             }
           ]
         },
-        "name": "ForEach1",
+        "name": "ForEachCSV",
         "dependsOn": [
           {
             "activity": "FilterCSV",
@@ -202,6 +208,7 @@
       {
         "type": "ForEach",
         "typeProperties": {
+          "isSequential": true,
           "items": {
             "value": "@activity('FilterJSON').output.value",
             "type": "Expression"
@@ -226,7 +233,11 @@
                       "location": {
                         "type": "AzureBlobFSLocation",
                         "fileSystem": "source-data",
-                        "folderPath": "files"
+                        "folderPath": "files",
+                        "fileName": {
+                          "value": "@item().name",
+                          "type": "Expression"
+                        }
                       }
                     },
                     "schema": {},
@@ -242,7 +253,7 @@
                     "type": "JsonWriteSettings"
                   },
                   "storeSettings": {
-                    "type": "LakehouseWriteSettings"
+                    "type": "AzureBlobStorageWriteSettings"
                   },
                   "datasetSettings": {
                     "type": "Json",
@@ -282,10 +293,115 @@
             }
           ]
         },
-        "name": "ForEach1_copy1",
+        "name": "ForEachJson",
         "dependsOn": [
           {
             "activity": "FilterJSON",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "93a8f183-d3bd-8c54-460c-992361da5c83",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Data_load_as_Delta_Table",
+        "dependsOn": [
+          {
+            "activity": "ForEachJson",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "ForEachCSV",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "b1c51562-e003-9800-4b3c-5df63a729a0c",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Cleaning_NoteBook",
+        "dependsOn": [
+          {
+            "activity": "Wait1",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "e49d0fa1-188e-9a74-4b04-1f792280507b",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Gold_Layer_NoteBook",
+        "dependsOn": [
+          {
+            "activity": "Wait2",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 30
+        },
+        "name": "Wait1",
+        "dependsOn": [
+          {
+            "activity": "Data_load_as_Delta_Table",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 30
+        },
+        "name": "Wait2",
+        "dependsOn": [
+          {
+            "activity": "Cleaning_NoteBook",
             "dependencyConditions": [
               "Succeeded"
             ]
