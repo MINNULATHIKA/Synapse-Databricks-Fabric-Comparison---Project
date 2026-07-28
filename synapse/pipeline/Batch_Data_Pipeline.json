@@ -118,7 +118,14 @@
 			{
 				"name": "External_Table_View_Script",
 				"type": "Script",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Data_Gold_Notebook",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -139,6 +146,60 @@
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Data_Cleaning",
+				"type": "SynapseNotebook",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "Data_Cleaning_Notebook",
+						"type": "NotebookReference"
+					},
+					"snapshot": true
+				}
+			},
+			{
+				"name": "Data_Gold_Notebook",
+				"type": "SynapseNotebook",
+				"dependsOn": [
+					{
+						"activity": "Data_Cleaning",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "Gold_Layer_Notebook",
+						"type": "NotebookReference"
+					},
+					"snapshot": true
 				}
 			}
 		],
