@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "banking-analytics-platform"
+		},
+		"Source_Data_Linked_service_accountKey": {
+			"value": ""
+		},
+		"banking-analytics-platform-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:banking-analytics-platform.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"Linked_service_script_activity_properties_typeProperties_server": {
+			"value": "banking-analytics-platform-ondemand.sql.azuresynapse.net"
+		},
+		"Linked_service_script_activity_properties_typeProperties_database": {
+			"value": "banking_project_db"
+		},
+		"Source_Data_Linked_service_properties_typeProperties_url": {
+			"value": "https://bankingproject4storage.dfs.core.windows.net/"
+		},
+		"banking-analytics-platform-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://bankingproject4storage.dfs.core.windows.net"
+		}
+	}
+}
