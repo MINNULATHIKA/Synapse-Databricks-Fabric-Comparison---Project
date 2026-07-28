@@ -153,6 +153,13 @@
                   }
                 }
               }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Merchant state'"
+                }
+              }
             }
           }
         }
@@ -209,6 +216,13 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'count of fraud transactions'"
                 }
               }
             }
@@ -407,6 +421,39 @@
             }
           ]
         }
+      },
+      {
+        "name": "f6ee72e4cca9196ce050",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_fraud_monitoring"
+              }
+            },
+            "Property": "category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6d922992a2e9d57dc0a1",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "gold_fraud_monitoring"
+                  }
+                },
+                "Property": "is_fraud"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

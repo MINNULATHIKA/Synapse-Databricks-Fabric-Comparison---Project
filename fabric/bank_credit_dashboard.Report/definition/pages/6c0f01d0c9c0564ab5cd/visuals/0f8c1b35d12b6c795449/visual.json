@@ -135,6 +135,13 @@
                   }
                 }
               }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Utilization Band'"
+                }
+              }
             }
           }
         }
@@ -191,6 +198,13 @@
                       "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Customers Count'"
                 }
               }
             }
@@ -297,5 +311,42 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4e3644582973600090a4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_credit_utilization"
+              }
+            },
+            "Property": "utilization_band"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c6f2d9051ad22c95019e",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "gold_transactions"
+                  }
+                },
+                "Property": "customer_id"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
