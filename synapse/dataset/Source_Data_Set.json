@@ -1,0 +1,184 @@
+{
+	"name": "Source_Data_Set",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Source_Data_Linked_service",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "source-data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Customer ID",
+				"type": "String"
+			},
+			{
+				"name": "First Name",
+				"type": "String"
+			},
+			{
+				"name": "Last Name",
+				"type": "String"
+			},
+			{
+				"name": "Age",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "Address",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "Contact Number",
+				"type": "String"
+			},
+			{
+				"name": "Email",
+				"type": "String"
+			},
+			{
+				"name": "Account Type",
+				"type": "String"
+			},
+			{
+				"name": "Account Balance",
+				"type": "String"
+			},
+			{
+				"name": "Date Of Account Opening",
+				"type": "String"
+			},
+			{
+				"name": "Last Transaction Date",
+				"type": "String"
+			},
+			{
+				"name": "TransactionID",
+				"type": "String"
+			},
+			{
+				"name": "Transaction Date",
+				"type": "String"
+			},
+			{
+				"name": "Transaction Type",
+				"type": "String"
+			},
+			{
+				"name": "Transaction Amount",
+				"type": "String"
+			},
+			{
+				"name": "Account Balance After Transaction",
+				"type": "String"
+			},
+			{
+				"name": "Branch ID",
+				"type": "String"
+			},
+			{
+				"name": "Loan ID",
+				"type": "String"
+			},
+			{
+				"name": "Loan Amount",
+				"type": "String"
+			},
+			{
+				"name": "Loan Type",
+				"type": "String"
+			},
+			{
+				"name": "Interest Rate",
+				"type": "String"
+			},
+			{
+				"name": "Loan Term",
+				"type": "String"
+			},
+			{
+				"name": "Approval/Rejection Date",
+				"type": "String"
+			},
+			{
+				"name": "Loan Status",
+				"type": "String"
+			},
+			{
+				"name": "CardID",
+				"type": "String"
+			},
+			{
+				"name": "Card Type",
+				"type": "String"
+			},
+			{
+				"name": "Credit Limit",
+				"type": "String"
+			},
+			{
+				"name": "Credit Card Balance",
+				"type": "String"
+			},
+			{
+				"name": "Minimum Payment Due",
+				"type": "String"
+			},
+			{
+				"name": "Payment Due Date",
+				"type": "String"
+			},
+			{
+				"name": "Last Credit Card Payment Date",
+				"type": "String"
+			},
+			{
+				"name": "Rewards Points",
+				"type": "String"
+			},
+			{
+				"name": "Feedback ID",
+				"type": "String"
+			},
+			{
+				"name": "Feedback Date",
+				"type": "String"
+			},
+			{
+				"name": "Feedback Type",
+				"type": "String"
+			},
+			{
+				"name": "Resolution Status",
+				"type": "String"
+			},
+			{
+				"name": "Resolution Date",
+				"type": "String"
+			},
+			{
+				"name": "Anomaly",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
