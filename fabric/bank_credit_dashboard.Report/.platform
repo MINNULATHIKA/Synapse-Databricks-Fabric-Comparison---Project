@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "bank_credit_dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4221021c-7f3c-bda9-47d5-901c1c1476d7"
+  }
+}

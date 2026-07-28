@@ -1,0 +1,120 @@
+table gold_credit_utilization
+	lineageTag: 7c865ad5-a21b-4e5f-b312-5028be19dc5f
+	sourceLineageTag: [dbo].[gold_credit_utilization]
+
+	measure Average_credit_scor = AVERAGE(gold_credit_utilization[credit_score])
+		lineageTag: af92de5e-6335-46e6-b257-2ddb94a9ba00
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3240ec95-32ed-4615-aac4-2f0ec353415f
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_age
+		dataType: int64
+		formatString: 0
+		lineageTag: 46fc6f71-5324-4338-a147-ca1a93723aa4
+		sourceLineageTag: current_age
+		summarizeBy: none
+		sourceColumn: current_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: d421d427-c86a-4e79-9c88-18250bec9a8c
+		sourceLineageTag: gender
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column yearly_income
+		dataType: double
+		lineageTag: e270474a-bd57-4bee-bd49-dee28a6cb56d
+		sourceLineageTag: yearly_income
+		summarizeBy: none
+		sourceColumn: yearly_income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_debt
+		dataType: double
+		lineageTag: 100a9908-c2d1-4c8e-9231-c582170d2e60
+		sourceLineageTag: total_debt
+		summarizeBy: none
+		sourceColumn: total_debt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column credit_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 50030cfb-227a-42d5-ad35-36d35165bf74
+		sourceLineageTag: credit_score
+		summarizeBy: none
+		sourceColumn: credit_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_credit_limit
+		dataType: double
+		lineageTag: e05dfd5c-e264-491b-bede-66cc43939170
+		sourceLineageTag: total_credit_limit
+		summarizeBy: none
+		sourceColumn: total_credit_limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 845ce2fb-fa47-4d6e-b541-4fbb57f071fd
+		sourceLineageTag: total_cards
+		summarizeBy: none
+		sourceColumn: total_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_utilization
+		dataType: double
+		lineageTag: b2f39580-948c-4440-bc70-0e408c62504e
+		sourceLineageTag: credit_utilization
+		summarizeBy: none
+		sourceColumn: credit_utilization
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column utilization_band
+		dataType: string
+		lineageTag: 32aa4804-1084-4a0f-9bca-c85bb0603bc2
+		sourceLineageTag: utilization_band
+		summarizeBy: none
+		sourceColumn: utilization_band
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_credit_utilization = entity
+		mode: directLake
+		source
+			entityName: gold_credit_utilization
+			schemaName: dbo
+			expressionSource: 'DirectLake - project4_bank_credit_lakehouse'
+

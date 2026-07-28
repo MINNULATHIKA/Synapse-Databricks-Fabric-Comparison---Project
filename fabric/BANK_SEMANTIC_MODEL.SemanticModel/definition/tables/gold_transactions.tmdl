@@ -1,0 +1,146 @@
+table gold_transactions
+	lineageTag: b23cb426-4cc3-4fa9-940b-17f694bba758
+	sourceLineageTag: [dbo].[gold_transactions]
+
+	measure Total_Transactions = COUNT(gold_transactions[transaction_id])
+		formatString: 0
+		lineageTag: 1cfdc797-4e99-4096-b571-2419c775f9dc
+
+		changedProperty = Name
+
+	column transaction_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e89d085-bffd-4a6c-b3fe-f4781f380ba7
+		sourceLineageTag: transaction_id
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a0c1ae1f-9278-45e8-833f-b92adee9755c
+		sourceLineageTag: card_id
+		summarizeBy: sum
+		sourceColumn: card_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 967e9a8b-2709-4905-8f08-18be4cf883da
+		sourceLineageTag: transaction_year
+		summarizeBy: sum
+		sourceColumn: transaction_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 60cb5d49-a455-4cdf-8512-898abb26c318
+		sourceLineageTag: transaction_month
+		summarizeBy: sum
+		sourceColumn: transaction_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_month_name
+		dataType: string
+		lineageTag: c21af368-cca6-4a97-b845-e1d29a920479
+		sourceLineageTag: transaction_month_name
+		summarizeBy: none
+		sourceColumn: transaction_month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_amount
+		dataType: double
+		lineageTag: d464c220-67bc-4248-a505-6f771144a131
+		sourceLineageTag: transaction_amount
+		summarizeBy: sum
+		sourceColumn: transaction_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column merchant_city
+		dataType: string
+		lineageTag: a2abd7bd-ab78-4b31-8fe2-fed3813dd364
+		sourceLineageTag: merchant_city
+		summarizeBy: none
+		sourceColumn: merchant_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_state
+		dataType: string
+		lineageTag: b96eebfa-ddbf-4940-a1d7-6fbe4fe3ef0e
+		sourceLineageTag: merchant_state
+		summarizeBy: none
+		sourceColumn: merchant_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column mcc
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b6035cd-0295-4462-9d5d-fa0adbcb4d44
+		sourceLineageTag: mcc
+		summarizeBy: sum
+		sourceColumn: mcc
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: abbbff2b-e470-4585-a8c3-85ebb5ae336e
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 56601f3f-acf3-4137-8179-d47e3cbe5b0d
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column debited_amount
+		dataType: double
+		lineageTag: 16d3bea4-45a1-4415-ad9a-ab3735689fad
+		sourceLineageTag: debited_amount
+		summarizeBy: sum
+		sourceColumn: debited_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column credited_amount
+		dataType: double
+		lineageTag: e72240cc-37f4-46b8-b2b8-11fe457613f7
+		sourceLineageTag: credited_amount
+		summarizeBy: sum
+		sourceColumn: credited_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition gold_transactions = entity
+		mode: directLake
+		source
+			entityName: gold_transactions
+			schemaName: dbo
+			expressionSource: 'DirectLake - project4_bank_credit_lakehouse'
+

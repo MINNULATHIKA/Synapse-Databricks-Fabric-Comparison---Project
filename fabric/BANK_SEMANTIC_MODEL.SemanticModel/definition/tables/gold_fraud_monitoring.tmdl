@@ -1,0 +1,151 @@
+table gold_fraud_monitoring
+	lineageTag: 4d17e786-17c7-4b04-ae82-c1d0260fda13
+	sourceLineageTag: [dbo].[gold_fraud_monitoring]
+
+	measure 'Fraud Transactions' =
+			
+			CALCULATE(
+			    COUNTROWS(gold_fraud_monitoring),
+			    gold_fraud_monitoring[is_fraud] = 1
+			)
+		formatString: 0
+		lineageTag: 2e86723e-6679-404c-85c4-843214283325
+
+		changedProperty = Name
+
+	column transaction_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bd842d15-8556-4fb6-b07d-9c212b556e0e
+		sourceLineageTag: transaction_id
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 15a0f633-00d4-4cbf-be04-6d3d1a29e952
+		sourceLineageTag: client_id
+		summarizeBy: none
+		sourceColumn: client_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f93b887e-f865-480a-8b8e-7a06fadd24c2
+		sourceLineageTag: card_id
+		summarizeBy: none
+		sourceColumn: card_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1c6c9015-2f4d-4642-9ae9-23510844cedd
+		sourceLineageTag: transaction_date
+		summarizeBy: none
+		sourceColumn: transaction_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_amount
+		dataType: double
+		lineageTag: a083a895-d1ea-45eb-95e1-9d25faaf5be9
+		sourceLineageTag: transaction_amount
+		summarizeBy: none
+		sourceColumn: transaction_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column merchant_city
+		dataType: string
+		lineageTag: 84b065ef-481c-41ab-afcf-3c8e295e6fb1
+		sourceLineageTag: merchant_city
+		summarizeBy: none
+		sourceColumn: merchant_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_state
+		dataType: string
+		lineageTag: 61fdf1a8-200b-4e00-a04c-82f7dae77971
+		sourceLineageTag: merchant_state
+		summarizeBy: none
+		sourceColumn: merchant_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column mcc
+		dataType: int64
+		formatString: 0
+		lineageTag: ca956673-f695-4fe6-bd12-2c0e385ed5b3
+		sourceLineageTag: mcc
+		summarizeBy: none
+		sourceColumn: mcc
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: fad7a3b1-b209-48f3-99a2-3b5e699e669e
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraud_label
+		dataType: string
+		lineageTag: 14d2f3ce-9cb0-41b2-8392-8178a53f880d
+		sourceLineageTag: fraud_label
+		summarizeBy: none
+		sourceColumn: fraud_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_fraud
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e8f02d0-3e9b-4bd9-968b-6812e008a5e8
+		sourceLineageTag: is_fraud
+		summarizeBy: none
+		sourceColumn: is_fraud
+
+		annotation SummarizationSetBy = Automatic
+
+	column debited_amount
+		dataType: double
+		lineageTag: f498cbff-cb37-4dc8-bc84-579289b1c284
+		sourceLineageTag: debited_amount
+		summarizeBy: none
+		sourceColumn: debited_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column credited_amount
+		dataType: double
+		lineageTag: 6ee5f67a-cf70-4f6e-8852-602b9496d7c2
+		sourceLineageTag: credited_amount
+		summarizeBy: none
+		sourceColumn: credited_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition gold_fraud_monitoring = entity
+		mode: directLake
+		source
+			entityName: gold_fraud_monitoring
+			schemaName: dbo
+			expressionSource: 'DirectLake - project4_bank_credit_lakehouse'
+
