@@ -2,6 +2,14 @@ table gold_users
 	lineageTag: bd4c0aaf-79f9-4d00-8be7-5165364b5f58
 	sourceLineageTag: [dbo].[gold_users]
 
+	measure 'Total Customers' =
+			
+			DISTINCTCOUNT(gold_users[id])
+		formatString: 0
+		lineageTag: 9b4b37aa-cd67-43b3-8625-c0a2faec60d9
+
+		changedProperty = Name
+
 	column id
 		dataType: int64
 		formatString: 0

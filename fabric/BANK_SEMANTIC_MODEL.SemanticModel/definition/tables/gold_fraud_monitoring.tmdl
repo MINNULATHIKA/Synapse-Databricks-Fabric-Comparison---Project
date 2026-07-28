@@ -2,6 +2,17 @@ table gold_fraud_monitoring
 	lineageTag: 4d17e786-17c7-4b04-ae82-c1d0260fda13
 	sourceLineageTag: [dbo].[gold_fraud_monitoring]
 
+	measure 'Fraud Transactions' =
+			
+			CALCULATE(
+			    COUNTROWS(gold_fraud_monitoring),
+			    gold_fraud_monitoring[is_fraud] = 1
+			)
+		formatString: 0
+		lineageTag: 2e86723e-6679-404c-85c4-843214283325
+
+		changedProperty = Name
+
 	column transaction_id
 		dataType: int64
 		formatString: 0

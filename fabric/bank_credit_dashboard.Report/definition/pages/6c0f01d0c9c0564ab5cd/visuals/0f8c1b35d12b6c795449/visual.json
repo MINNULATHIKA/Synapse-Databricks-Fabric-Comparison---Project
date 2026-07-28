@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 880,
-    "z": 4001,
+    "z": 5000,
     "height": 560,
     "width": 590,
-    "tabOrder": 4001
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -297,42 +297,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0b8ea3767e6030b67169",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "gold_transactions"
-                  }
-                },
-                "Property": "customer_id"
-              }
-            },
-            "Function": 5
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "841ed922bc5b1b33857e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "gold_credit_utilization"
-              }
-            },
-            "Property": "utilization_band"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

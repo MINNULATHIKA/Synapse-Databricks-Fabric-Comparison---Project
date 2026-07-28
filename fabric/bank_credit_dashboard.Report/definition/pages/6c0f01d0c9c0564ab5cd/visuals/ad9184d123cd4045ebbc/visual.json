@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "f00c00ce513ede437a4d",
+  "name": "ad9184d123cd4045ebbc",
   "position": {
-    "x": 0,
-    "y": 285,
-    "z": 1000,
+    "x": 1323.3333333333335,
+    "y": 880,
+    "z": 7000,
     "height": 560,
     "width": 590,
-    "tabOrder": 1000
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,15 +20,33 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "gold_users"
+                      "Entity": "gold_fraud_monitoring"
                     }
                   },
-                  "Property": "customer_segment"
+                  "Property": "merchant_state"
                 }
               },
-              "queryRef": "gold_users.customer_segment",
-              "nativeQueryRef": "customer_segment",
+              "queryRef": "gold_fraud_monitoring.merchant_state",
+              "nativeQueryRef": "merchant_state",
               "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold_fraud_monitoring"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "gold_fraud_monitoring.category",
+              "nativeQueryRef": "category"
             }
           ]
         },
@@ -41,17 +59,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "gold_transactions"
+                          "Entity": "gold_fraud_monitoring"
                         }
                       },
-                      "Property": "customer_id"
+                      "Property": "is_fraud"
                     }
                   },
                   "Function": 5
                 }
               },
-              "queryRef": "CountNonNull(gold_transactions.customer_id)",
-              "nativeQueryRef": "customer_id"
+              "queryRef": "CountNonNull(gold_fraud_monitoring.is_fraud)",
+              "nativeQueryRef": "is_fraud"
             }
           ]
         }
@@ -65,10 +83,10 @@
                   "Column": {
                     "Expression": {
                       "SourceRef": {
-                        "Entity": "gold_transactions"
+                        "Entity": "gold_fraud_monitoring"
                       }
                     },
-                    "Property": "customer_id"
+                    "Property": "is_fraud"
                   }
                 },
                 "Function": 5
@@ -196,6 +214,24 @@
             }
           }
         }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -255,7 +291,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Customers Count by Customer segment'"
+                  "Value": "'Fraud By Category &  Merchant state'"
                 }
               }
             },
@@ -297,5 +333,81 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9aedae572c8dbbe5068e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_fraud_monitoring"
+              }
+            },
+            "Property": "merchant_state"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "g",
+              "Entity": "gold_fraud_monitoring",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "g"
+                              }
+                            },
+                            "Property": "merchant_state"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 }

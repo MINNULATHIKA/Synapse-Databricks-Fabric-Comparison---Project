@@ -2,6 +2,13 @@ table gold_credit_utilization
 	lineageTag: 7c865ad5-a21b-4e5f-b312-5028be19dc5f
 	sourceLineageTag: [dbo].[gold_credit_utilization]
 
+	measure Average_credit_scor = AVERAGE(gold_credit_utilization[credit_score])
+		lineageTag: af92de5e-6335-46e6-b257-2ddb94a9ba00
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column customer_id
 		dataType: int64
 		formatString: 0

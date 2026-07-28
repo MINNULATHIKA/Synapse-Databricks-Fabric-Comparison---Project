@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
-  "name": "55511f93c6e51e9a78d0",
+  "name": "ffd37eaccb35d6ebc53d",
   "position": {
-    "x": 636.66666666666674,
+    "x": 2004,
     "y": 880,
-    "z": 6000,
+    "z": 8000,
     "height": 560,
-    "width": 565,
-    "tabOrder": 6000
+    "width": 499,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "tableEx",
@@ -20,13 +20,41 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "gold_credit_utilization"
+                      "Entity": "gold_transactions"
+                    }
+                  },
+                  "Property": "transaction_id"
+                }
+              },
+              "queryRef": "gold_transactions.transaction_id",
+              "nativeQueryRef": "transaction_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold_transactions"
+                    }
+                  },
+                  "Property": "transaction_month_name"
+                }
+              },
+              "queryRef": "gold_transactions.transaction_month_name",
+              "nativeQueryRef": "transaction_month_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold_transactions"
                     }
                   },
                   "Property": "customer_id"
                 }
               },
-              "queryRef": "gold_credit_utilization.customer_id",
+              "queryRef": "gold_transactions.customer_id",
               "nativeQueryRef": "customer_id"
             },
             {
@@ -34,70 +62,28 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "gold_users"
+                      "Entity": "gold_fraud_monitoring"
                     }
                   },
-                  "Property": "credit_score"
+                  "Property": "is_fraud"
                 }
               },
-              "queryRef": "gold_users.credit_score",
-              "nativeQueryRef": "credit_score"
+              "queryRef": "gold_fraud_monitoring.is_fraud",
+              "nativeQueryRef": "is_fraud"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "gold_users"
+                      "Entity": "gold_fraud_monitoring"
                     }
                   },
-                  "Property": "yearly_income"
+                  "Property": "merchant_city"
                 }
               },
-              "queryRef": "gold_users.yearly_income",
-              "nativeQueryRef": "yearly_income"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "gold_users"
-                    }
-                  },
-                  "Property": "total_debt"
-                }
-              },
-              "queryRef": "gold_users.total_debt",
-              "nativeQueryRef": "total_debt"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "gold_credit_utilization"
-                    }
-                  },
-                  "Property": "total_credit_limit"
-                }
-              },
-              "queryRef": "gold_credit_utilization.total_credit_limit",
-              "nativeQueryRef": "total_credit_limit"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "gold_credit_utilization"
-                    }
-                  },
-                  "Property": "utilization_band"
-                }
-              },
-              "queryRef": "gold_credit_utilization.utilization_band",
-              "nativeQueryRef": "utilization_band"
+              "queryRef": "gold_fraud_monitoring.merchant_city",
+              "nativeQueryRef": "merchant_city"
             }
           ]
         }
@@ -109,10 +95,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "gold_credit_utilization"
+                    "Entity": "gold_transactions"
                   }
                 },
-                "Property": "customer_id"
+                "Property": "transaction_id"
               }
             },
             "direction": "Ascending"
@@ -149,22 +135,6 @@
                 }
               }
             }
-          }
-        }
-      ],
-      "columnWidth": [
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "98.66666899270191D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "gold_credit_utilization.customer_id"
           }
         }
       ]
@@ -214,7 +184,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'High-risk customer table By credit Utilization'"
+                  "Value": "'Fraud Investigation Table'"
                 }
               }
             },
@@ -228,25 +198,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "19D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#215E3B'"
-                    }
-                  }
+                  "Value": "27D"
                 }
               }
             },
@@ -257,6 +209,17 @@
                     "ThemeDataColor": {
                       "ColorId": 0,
                       "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#215E3B'"
                     }
                   }
                 }
@@ -328,15 +291,44 @@
               }
             }
           ]
-        }
+        },
+        "howCreated": "User"
       },
       {
-        "name": "9e41572914eda0a2cd9a",
+        "name": "21ffea2e7dd7d82a5be7",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "gold_credit_utilization"
+                "Entity": "gold_transactions"
+              }
+            },
+            "Property": "transaction_id"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "38be571e07ddc017a029",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_transactions"
+              }
+            },
+            "Property": "transaction_month_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d625fdcf3d4050023dc0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_transactions"
               }
             },
             "Property": "customer_id"
@@ -345,60 +337,86 @@
         "type": "Advanced"
       },
       {
-        "name": "6134d1a03202359010e5",
+        "name": "b8b583cedea0bbcc48c3",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "gold_users"
+                "Entity": "gold_fraud_monitoring"
               }
             },
-            "Property": "credit_score"
+            "Property": "is_fraud"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "g",
+              "Entity": "gold_fraud_monitoring",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "g"
+                          }
+                        },
+                        "Property": "is_fraud"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "1L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
       },
       {
-        "name": "52ad3310a3003ec3d59b",
+        "name": "824117e2082735bca518",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "gold_users"
+                "Entity": "gold_fraud_monitoring"
               }
             },
-            "Property": "yearly_income"
+            "Property": "merchant_city"
           }
         },
-        "type": "Advanced"
-      },
-      {
-        "name": "14bd41a6330a631cc936",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "gold_users"
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
               }
-            },
-            "Property": "total_debt"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "9b45824b285d0d03c337",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "gold_credit_utilization"
-              }
-            },
-            "Property": "total_credit_limit"
-          }
-        },
-        "type": "Advanced"
+            }
+          ]
+        }
       }
     ]
   }
