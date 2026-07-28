@@ -1,0 +1,12 @@
+relationship fff16cb9-a918-c2a0-96b9-f84ae61e56d3
+	fromColumn: gold_transactions.customer_id
+	toColumn: gold_credit_utilization.customer_id
+
+relationship bdfe0d6c-64f8-2fa5-1d68-c0e06ec1b688
+	fromColumn: gold_transactions.customer_id
+	toColumn: gold_users.id
+
+relationship 738b01ed-a803-d499-aeee-81cbb7785d92
+	fromColumn: gold_transactions.transaction_id
+	toColumn: gold_fraud_monitoring.transaction_id
+

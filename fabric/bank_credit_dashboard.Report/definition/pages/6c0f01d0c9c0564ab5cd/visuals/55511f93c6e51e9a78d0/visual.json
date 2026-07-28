@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "55511f93c6e51e9a78d0",
+  "position": {
+    "x": 638.33333333333337,
+    "y": 895,
+    "z": 4002,
+    "height": 150,
+    "width": 590,
+    "tabOrder": 4002
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold_credit_utilization"
+                    }
+                  },
+                  "Property": "customer_id"
+                }
+              },
+              "queryRef": "gold_credit_utilization.customer_id",
+              "nativeQueryRef": "customer_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold_users"
+                    }
+                  },
+                  "Property": "credit_score"
+                }
+              },
+              "queryRef": "gold_users.credit_score",
+              "nativeQueryRef": "credit_score"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7584b064b1a377b060d6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_credit_utilization"
+              }
+            },
+            "Property": "customer_id"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6887635300153090e509",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "gold_users"
+              }
+            },
+            "Property": "credit_score"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
